@@ -28,7 +28,7 @@
 ### Phase 1: Flashing the Base MicroPython Firmware
 1. Download and install **M5Burner** on your computer.
 2. Plug your M5StickC PLUS2 into your computer via USB-C.
-3. Open M5Burner, select **M5StickC PLUS2**, download the **UIFlow2** (or base MicroPython) firmware, and click **Burn** to flash your device.
+3. Open M5Burner, select **M5StickC PLUS2**, download the **UIFlow2** (or base MicroPython) firmware, and click **Burn** to flash your device. If using UIFlow2 it is recommended to not fill the WiFi settings.
 
 ### Phase 2: Uploading Crawlbot Firmware
 1. Open your preferred MicroPython IDE (such as **Thonny IDE** or VS Code with PyMakr).
@@ -67,7 +67,7 @@
 > * Any rogue spinning sequences that may accidentally challenge local household appliances to a dance-off.
 > * Accidental world domination, temporal paradoxes, or your robot mysteriously vanishing into the digital ether.
 > 
-> *If your robot breaks something, it's not the authors responsibility now. Happy driving!*
+> *If your robot breaks something, it's not the authors responsibility. Happy driving!*
 
 ---
 
