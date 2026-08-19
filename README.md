@@ -40,7 +40,6 @@
 2. On the M5StickC PLUS2 screen, you will see the **Crawlbot Ready** bootsplash. Press the **M5 button** once to transition into the First-Time Setup state.
 3. On your phone or laptop, open Wi-Fi settings and connect to the access point:
    * **Network Name:** `BugC2_Robot`
-   * **Password:** `m5stack_bugc`
 4. A captive portal page will automatically pop up. Enter your custom **Username** and **Password**, then click **Save & Start**.
 5. The robot will commit your credentials to flash memory and automatically **reboot**.
 
