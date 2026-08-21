@@ -69,6 +69,7 @@
 > 
 > *If your robot breaks something, it's not the authors responsibility. Happy driving!*
 
+Note: If you want to report a bug or suggest a feature, please send me a message or write an issue on issue page.
 ---
 
 **Developed with precision by KostadinosK**
