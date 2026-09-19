@@ -41,7 +41,7 @@ try:
 except:
     is_setup = False
 
-# Robust query string parser
+# Robust query string parser (prevents browser parameter shuffling bugs)
 def parse_query(query_str):
     params = {}
     for part in query_str.split('&'):
@@ -57,7 +57,7 @@ html_setup = """<!DOCTYPE html>
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BugC2 Setup</title>
+  <title>Crawlbot Setup</title>
   <style>
     body { background: #121212; color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
     .container { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
@@ -66,6 +66,9 @@ html_setup = """<!DOCTYPE html>
     p { color: #aaa; font-size: 14px; margin-bottom: 20px; }
     input { width: 90%; padding: 12px; margin: 10px 0; border: none; border-radius: 8px; background: #2a2a2a; color: white; font-size: 16px; text-align: center; outline: none; transition: 0.3s; }
     input:focus { box-shadow: 0 0 10px rgba(255, 59, 48, 0.5); }
+    .pwd-box { position: relative; width: 90%; margin: 10px auto; }
+    .pwd-box input { width: 100%; margin: 0; box-sizing: border-box; padding-right: 40px; }
+    .eye { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 18px; cursor: pointer; user-select: none; }
     .btn { background: linear-gradient(90deg, #ff9500, #ff3b30); color: white; padding: 14px; font-size: 16px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; text-transform: uppercase; margin-top: 15px; width: 100%; }
     .btn:active { opacity: 0.7; }
     .credit { font-size: 10px; color: #555; font-weight: bold; letter-spacing: 2px; padding: 20px; text-transform: uppercase; }
@@ -78,12 +81,21 @@ html_setup = """<!DOCTYPE html>
       <p>Create your admin credentials to lock the robot.</p>
       <form action="/setup" method="GET">
         <input name="u" placeholder="New Username" autocapitalize="none" autocorrect="off" required><br>
-        <input type="password" name="p" placeholder="New Password" required><br>
+        <div class="pwd-box">
+          <input type="password" id="pwd" name="p" placeholder="New Password" required>
+          <span class="eye" onclick="togglePwd('pwd')">👁️</span>
+        </div>
         <button class="btn">SAVE & START</button>
       </form>
     </div>
   </div>
   <div class="credit">by KostadinosK</div>
+  <script>
+    function togglePwd(id) {
+      let el = document.getElementById(id);
+      el.type = el.type === "password" ? "text" : "password";
+    }
+  </script>
 </body>
 </html>"""
 
@@ -91,7 +103,7 @@ html_login = """<!DOCTYPE html>
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BugC2 Login</title>
+  <title>Crawlbot Login</title>
   <style>
     body { background: #121212; color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
     .container { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
@@ -99,6 +111,9 @@ html_login = """<!DOCTYPE html>
     h2 { color: #00e5ff; text-transform: uppercase; letter-spacing: 2px; margin-top: 0; }
     input { width: 90%; padding: 12px; margin: 10px 0; border: none; border-radius: 8px; background: #2a2a2a; color: white; font-size: 16px; text-align: center; outline: none; transition: 0.3s; }
     input:focus { box-shadow: 0 0 10px rgba(0, 229, 255, 0.5); }
+    .pwd-box { position: relative; width: 90%; margin: 10px auto; }
+    .pwd-box input { width: 100%; margin: 0; box-sizing: border-box; padding-right: 40px; }
+    .eye { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 18px; cursor: pointer; user-select: none; }
     .btn { background: linear-gradient(90deg, #0072ff, #00e5ff); color: white; padding: 14px; font-size: 16px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; text-transform: uppercase; margin-top: 15px; width: 100%; }
     .btn:active { opacity: 0.7; }
     .credit { font-size: 10px; color: #555; font-weight: bold; letter-spacing: 2px; padding: 20px; text-transform: uppercase; }
@@ -107,15 +122,24 @@ html_login = """<!DOCTYPE html>
 <body>
   <div class="container">
     <div class="panel">
-      <h2>BugC2 Access</h2>
+      <h2>Crawlbot Access</h2>
       <form action="/auth" method="GET">
         <input name="u" placeholder="Username" autocapitalize="none" autocorrect="off"><br>
-        <input type="password" name="p" placeholder="Password"><br>
+        <div class="pwd-box">
+          <input type="password" id="pwd" name="p" placeholder="Password" required>
+          <span class="eye" onclick="togglePwd('pwd')">👁️</span>
+        </div>
         <button class="btn">LOGIN</button>
       </form>
     </div>
   </div>
   <div class="credit">by KostadinosK</div>
+  <script>
+    function togglePwd(id) {
+      let el = document.getElementById(id);
+      el.type = el.type === "password" ? "text" : "password";
+    }
+  </script>
 </body>
 </html>"""
 
@@ -123,7 +147,7 @@ html_app = """<!DOCTYPE html>
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>BugC2 Controller</title>
+  <title>Crawlbot Controller</title>
   <style>
     body { background: #121212; color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; margin: 0; display: flex; flex-direction: column; min-height: 100vh; touch-action: none; overflow: hidden; }
     .container { flex: 1; padding: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
@@ -139,12 +163,14 @@ html_app = """<!DOCTYPE html>
     .estop-btn:active { background: #cc2e26; }
     .rst-btn { flex: 1; background: #ff9500; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; letter-spacing: 1px; cursor: pointer; }
     .rst-btn:active { background: #cc7700; }
+    .wipe-btn { width: 100%; background: transparent; color: #ff3b30; border: 2px solid #ff3b30; padding: 12px; border-radius: 8px; font-weight: bold; letter-spacing: 1px; cursor: pointer; margin-top: 5px; }
+    .wipe-btn:active { background: #ff3b30; color: #fff; }
     .credit { font-size: 10px; color: #555; font-weight: bold; letter-spacing: 2px; padding: 15px; text-transform: uppercase; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Controller</h2>
+    <h2>Crawlbot</h2>
     <div id="joy-container"><div id="stick"></div></div>
     <div class="panel">
       <select id="spinCount">
@@ -162,6 +188,7 @@ html_app = """<!DOCTYPE html>
         <button class="estop-btn" onclick="emergencyStop()">E-STOP</button>
         <button class="rst-btn" onclick="sendAction('/RST')">REBOOT</button>
       </div>
+      <button class="wipe-btn" onclick="factoryReset()">FACTORY RESET</button>
     </div>
   </div>
   <div class="credit">by KostadinosK</div>
@@ -220,6 +247,24 @@ html_app = """<!DOCTYPE html>
             }
         }).catch(()=>{});
     }
+    
+    function factoryReset() {
+        let p = prompt("Security check: Enter Admin Password to Factory Reset.");
+        if (p) {
+            // Mimic HTML form serialization space handling
+            let encoded = encodeURIComponent(p).replace(/%20/g, "+");
+            fetch('/WIPE?p=' + encoded, {credentials: 'same-origin', cache: 'no-store'})
+            .then(r => r.text())
+            .then(txt => {
+                if (txt === "OK") {
+                    document.body.innerHTML = "<div class='container'><h2>Wiped! Rebooting...</h2></div><div class='credit'>by KostadinosK</div>";
+                    setTimeout(() => location.reload(), 2000); 
+                } else {
+                    alert("Incorrect Password! Access Denied.");
+                }
+            }).catch(()=>{});
+        }
+    }
 
     container.addEventListener('mousedown', handleStart);
     document.addEventListener('mousemove', moveStick);
@@ -265,7 +310,7 @@ Display.clear(0x000000)
 Display.setCursor(0, 0)
 Display.setTextSize(2)
 Display.setTextColor(0x00E5FF, 0x000000) 
-Display.print("BugC2 Ready\n\n")
+Display.print("Crawlbot Ready\n\n")
 Display.setTextColor(0xFFFFFF, 0x000000)
 Display.print("Press 'M5'\nto Start OS")
 
@@ -453,6 +498,20 @@ while True:
                         conn.send(HDR_AUTH)
                     else:
                         conn.send(HDR_REDIR)
+                        
+                elif path == '/WIPE' and is_auth:
+                    wipe_p = q_dict.get('p', '')
+                    if wipe_p == saved_p:
+                        try:
+                            os.remove('creds.txt')
+                        except:
+                            pass
+                        conn.send(b'HTTP/1.1 200 OK\r\nConnection: close\r\n\r\nOK')
+                        conn.close()
+                        time.sleep(1.0)
+                        machine.reset()
+                    else:
+                        conn.send(b'HTTP/1.1 200 OK\r\nConnection: close\r\n\r\nFAIL')
                         
                 elif path == '/joy' and is_auth:
                     if spin_count == 0:
