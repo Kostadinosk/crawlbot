@@ -51,7 +51,7 @@
 * **Spin Menu:** Select 1 to 5 rotations from the dropdown and tap Clockwise or Counter-Clockwise to execute automated spins.
 * **E-STOP:** Instantly halts all motor movement and cancels ongoing spin sequences mid-flight.
 * **Physical Button B (Top Right):** Acts as a universal physical hard-reboot shortcut from any operational screen.
-* **Secret Factory Reset:** If you ever forget your password, **hold down the front M5 button for 2 seconds** on the initial boot screen. The screen will flash red, wipe the `creds.txt` file, and restart the setup wizard.
+* **Secret Factory Reset:** If you ever forget your password, **hold down the front M5 button for 2 seconds** on the initial boot screen. The screen will flash red, wipe the `creds.txt` file, and restart the setup wizard or login to the Captive Portal, then click the Factory Reset button and lastly just write your password and everything will be wiped.
 
 ---
 
