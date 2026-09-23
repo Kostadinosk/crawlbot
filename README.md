@@ -72,4 +72,4 @@
 Note: If you want to report a bug or suggest a feature, please send me a message or write an issue on issue page.
 ---
 
-**Developed with precision by KostadinosK**
+**Developed with precision by KostadinosK and Gemini**
